@@ -17,3 +17,11 @@ New-AzVm `
     -SecurityGroupName "test-wp1-eus-nsg" `
     -PublicIpAddressName "test-wp1-eus-pubip" `
     -OpenPorts 80,3389
+
+# Azure CLI to vreate a new VM
+az vm create \
+    --resource-group TestResourceGroup \
+    --name test-wp1-eus-vm \
+    --image win2016datacenter \
+    --admin-username jonc \
+    --admin-password aReallyGoodPasswordHere
