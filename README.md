@@ -7,4 +7,13 @@ Register-AzResourceProvider -ProviderNamespace 'Microsoft.PolicyInsights'
 # Getting Azure policy template samples from Github to apply Policy Rule and Parameters to fetch from GitHub (for Azure Poweshell # Policy Definition)
 PS Azure:\> $definition = New-AzureRmPolicyDefinition -Name "apply default tag value" -DisplayName " Apply tag to each resource and its default value" -description "Applies to ha default tag in each resource and corresponding value if its not defined by the user." -Policy 'https://raw.githubusercontent.com/Azure/azure-policy/master/samples/built-in-policy/apply-default-tag-value/azurepolicy.rules.json' -Parameter 'https://raw.githubusercontent.com/Azure/azure-policy/master/samples/built-in-policy/apply-default-tag-value/azurepolicy.parameters.json' -Mode All
 
-
+# Powershell Command to create a new VM
+New-AzVm `
+    -ResourceGroupName "TestResourceGroup" `
+    -Name "test-wp1-eus-vm" `
+    -Location "East US" `
+    -VirtualNetworkName "test-wp1-eus-network" `
+    -SubnetName "default" `
+    -SecurityGroupName "test-wp1-eus-nsg" `
+    -PublicIpAddressName "test-wp1-eus-pubip" `
+    -OpenPorts 80,3389
