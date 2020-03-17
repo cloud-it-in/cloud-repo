@@ -39,3 +39,14 @@ az storage blob upload --container-name newcontainer --name customrole.json --fi
 Download link for AzCopy - https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 
 .\azcopy.exe copy Contents.txt "https://demostore2090.blob.core.windows.net/newcontainer/Contents.txt?sv=2019-02-02&ss=b&srt=sco&sp=rwlac&se=2020-02-26T15:28:04Z&st=2020-02-26T07:28:04Z&spr=https&sig=%2BgDC3AF0hVmzi%2Ff3TN1TwZpOQyojwBbqCng2OyZQOLs%3D"
+
+# Opening Port 445 for Azure File Share and map to mount drive on local computer
+$connectTestResult = Test-NetConnection -ComputerName clouditin.file.core.windows.net -Port 445
+if ($connectTestResult.TcpTestSucceeded) {
+    # Save the password so the drive will persist on reboot
+    cmd.exe /C "cmdkey /add:`"clouditin.file.core.windows.net`" /user:`"Azure\clouditin`" /pass:`"DYKVpaasdsaEj3PvsYLcfchc+4R+GFNYsMmsdyhjmasdnbI4d9bINLE+ULwbJIKkgfUc4ytX3nXIObOSgKHa36ttIkJqLBKfsadfbYv+Oo/AA==`""
+    # Mount the drive
+    New-PSDrive -Name Z -PSProvider FileSystem -Root "\\clouditin.file.core.windows.net\azuredrive-x"-Persist
+} else {
+    Write-Error -Message "Unable to reach the Azure storage account via port 445. Check to make sure your organization or ISP is not blocking port 445, or use Azure P2S VPN, Azure S2S VPN, or Express Route to tunnel SMB traffic over a different port."
+}
