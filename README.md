@@ -44,9 +44,9 @@ Download link for AzCopy - https://docs.microsoft.com/en-us/azure/storage/common
 $connectTestResult = Test-NetConnection -ComputerName clouditin.file.core.windows.net -Port 445
 if ($connectTestResult.TcpTestSucceeded) {
     # Save the password so the drive will persist on reboot
-    cmd.exe /C "cmdkey /add:`"clouditin.file.core.windows.net`" /user:`"Azure\clouditin`" /pass:`"DYKVpaasdsaEj3PvsYLcfchc+4R+GFNYsMmsdyhjmasdnbI4d9bINLE+ULwbJIKkgfUc4ytX3nXIObOSgKHa36ttIkJqLBKfsadfbYv+Oo/AA==`""
+    cmd.exe /C "cmdkey /add:`"containername.file.core.windows.net`" /user:`"Azure\containername`" /pass:`"DYKVpaasdsaEj3PvsYLcfchc+4R+GFNYsMmsdyhjmasdnbI4d9bINLE+ULwbJIKkgfUc4ytX3nXIObOSgKHa36ttIkJqLBKfsadfbYv+Oo/AA==`""
     # Mount the drive
-    New-PSDrive -Name Z -PSProvider FileSystem -Root "\\clouditin.file.core.windows.net\azuredrive-x"-Persist
+    New-PSDrive -Name Z -PSProvider FileSystem -Root "\\containername.file.core.windows.net\azuredrive-x"-Persist
 } else {
     Write-Error -Message "Unable to reach the Azure storage account via port 445. Check to make sure your organization or ISP is not blocking port 445, or use Azure P2S VPN, Azure S2S VPN, or Express Route to tunnel SMB traffic over a different port."
 }
