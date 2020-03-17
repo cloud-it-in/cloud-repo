@@ -25,3 +25,9 @@ az vm create \
     --image win2016datacenter \
     --admin-username jonc \
     --admin-password aReallyGoodPasswordHere
+    
+    
+    # AZURE : Transfering blobs to a storage account - Practice commands
+    
+    # 1. Using the Azure CLI to create a storage container
+az storage container create --name newcontainer --account-name "demostore2090" --account-key "Dbrn8TduNojZrzlKZSLHS8lHC1Yv6BDpG6XfeVBaJ9oKOzZmIBdczNo6vvThVHI4VikW1SqXkhaDr52tNDLxew=="   -AccessKey
