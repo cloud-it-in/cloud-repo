@@ -64,3 +64,43 @@ insert into customer(customerid,customername) values(1,'UserA');
 insert into customer(customerid,customername) values(2,'UserB');
 
 insert into customer(customerid,customername) values(3,'UserC');
+
+
+# Adding custom roles using Poweshell- json format
+Lab - Custom Roles - Practice commands
+
+Step 1) First create a file called customrole.json and enter the following contents. Ensure to change the value of the subscription id.
+
+{
+
+  "Name": "stagingrole",
+
+  "Id": null,
+
+  "IsCustom": true,
+
+  "Description": "Allows for read access to Azure Virtual Machines and storage accounts",
+
+  "Actions": [
+
+    "Microsoft.Compute/*/read",
+
+    "Microsoft.Storage/*/read"
+
+  ],
+
+  "NotActions": [],
+
+  "AssignableScopes": [
+
+    "/subscriptions/20c6eec9-2d80-4700-b0f6-4fde579a8783"
+
+  ]
+
+}
+
+Step 2) Next use the following sample commands from Azure cloud shell to register the new role and assign it to a user
+
+New-AzRoleDefinition -InputFile "customrole.json"
+
+New-AzRoleAssignment -ResourceGroupName azuredemo -SignInName demousrA@techsup1000gmail.onmicrosoft.com -RoleDefinitionName "stagingrole"
