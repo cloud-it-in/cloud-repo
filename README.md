@@ -27,7 +27,15 @@ az vm create \
     --admin-password aReallyGoodPasswordHere
     
     
-    # AZURE : Transfering blobs to a storage account - Practice commands
-    
-    # 1. Using the Azure CLI to create a storage container
+ # AZURE : Transfering blobs to a storage account - Practice commands
+   # 1. Using the Azure CLI to create a storage container
 az storage container create --name newcontainer --account-name "demostore2090" --account-key "Dbrn8TduNojZrzlKZSLHS8lHC1Yv6BDpG6XfeVBaJ9oKOzZmIBdczNo6vvThVHI4VikW1SqXkhaDr52tNDLxew=="   -AccessKey
+
+   # 2. Using the Azure CLI to upload a blob
+az storage blob upload --container-name newcontainer --name customrole.json --file customrole.json --account-name "demostore2090" --account-key "Dbrn8TduNojZrzlKZSLHS8lHC1Yv6BDpG6XfeVBaJ9oKOzZmIBdczNo6vvThVHI4VikW1SqXkhaDr52tNDLxew==" -AccessKey
+
+   # 3. Using the AzCopy tool to upload a blob
+
+Download link for AzCopy - https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+
+.\azcopy.exe copy Contents.txt "https://demostore2090.blob.core.windows.net/newcontainer/Contents.txt?sv=2019-02-02&ss=b&srt=sco&sp=rwlac&se=2020-02-26T15:28:04Z&st=2020-02-26T07:28:04Z&spr=https&sig=%2BgDC3AF0hVmzi%2Ff3TN1TwZpOQyojwBbqCng2OyZQOLs%3D"
