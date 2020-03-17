@@ -50,3 +50,17 @@ if ($connectTestResult.TcpTestSucceeded) {
 } else {
     Write-Error -Message "Unable to reach the Azure storage account via port 445. Check to make sure your organization or ISP is not blocking port 445, or use Azure P2S VPN, Azure S2S VPN, or Express Route to tunnel SMB traffic over a different port."
 }
+
+
+# Azure Data Factory prelude
+You can download the tool for free via the link - https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
+
+Also we are going to go ahead and create an Azure SQL Database and then issue the following commands. You can keep the commands handy if you are working along in the next Lab based exercise
+
+create table customer (customerid int ,customername varchar(1000));
+
+insert into customer(customerid,customername) values(1,'UserA');
+
+insert into customer(customerid,customername) values(2,'UserB');
+
+insert into customer(customerid,customername) values(3,'UserC');
