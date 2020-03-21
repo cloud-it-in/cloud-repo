@@ -104,3 +104,12 @@ Step 2) Next use the following sample commands from Azure cloud shell to registe
 New-AzRoleDefinition -InputFile "customrole.json"
 
 New-AzRoleAssignment -ResourceGroupName azuredemo -SignInName demousrA@techsup1000gmail.onmicrosoft.com -RoleDefinitionName "stagingrole"
+
+
+# Connect to Powershell to Create Custom Role
+
+Upload the json file-> See the path
+ls ( Check directory)
+
+Enter New Command
+New-AzRoleDefinition -InputFile "/home/pradip/Compute Operator.json"
