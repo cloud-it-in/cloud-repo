@@ -113,3 +113,12 @@ ls ( Check directory)
 
 Enter New Command
 New-AzRoleDefinition -InputFile "/home/pradip/Compute Operator.json"
+
+
+# Resizing a virtual machine - Practice commands- PowerShell commands to change the size of a virtual machine
+
+$vm = Get-AzVM -ResourceGroupName azuredemo -VMName newvm
+
+$vm.HardwareProfile.VmSize ="Standard_DS1_v2"
+
+Update-AzVM -VM $vm -ResourceGroupName azuredemo
