@@ -260,3 +260,12 @@ az network private-dns link vnet create -g azuredemo -n networklink -z cloud-int
     If you decide to link a virtual network to a private DNS zone and don't choose Auto-registration , then that network is referred to as a resolution only virtual network. The DNS records for the virtual machines in this network will not be automatically updated in the Private DNS Zone.
 
     Only one link can be created between a private DNS zone and a virtual network
+    
+# Deleting your Private DNS Zones
+
+When you want to delete your Private DNS Zones, make sure you don't have any record sets in the zone. If you have any record sets , except for the SOA type, you can go ahead and delete that record set.
+
+Also make sure to delete any Virtual network links for the Private DNS Zone
+
+Next you can go ahead and delete the Private DNS Zone.
+
