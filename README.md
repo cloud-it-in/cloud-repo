@@ -215,3 +215,48 @@ Image reference - https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway
     The subnets in your on-premise network must not overlap with the subnets in your Azure virtual network
 
     The Site-to-Site VPN connection uses an IPSec tunnel to encrypt the traffic.
+    
+ # Private DNS Zones - Points
+ 
+ 1. Stopping the virtual machines
+
+In the last chapter , we saw how to work with Private DNS Zones. We created two virtual machines named privatevm1 and privatevm2 as part of the virtual network privatenetwork. And this was linked to a private DNS zone named cloud-internal.com. Now what happens if we were to stop both the virtual machines.
+
+Would there be any changes to the private DNS zones?
+
+Well , yes , since we enabled Auto-registration for that zone, the record sets for those two virtual machines would be removed from the private DNS zone.
+
+
+2. // Using PowerShell to work with private DNS Zones
+
+// Create your Private DNS Zone
+
+$myzone = New-AzPrivateDnsZone -Name cloud-internal.com -ResourceGroupName azuredemo
+
+// Get a handle to your virtual network
+
+$vnet=Get-AzVirtualNetwork -Name privatenetwork -ResourceGroupName azuredemo
+
+// Create a virtual network link
+
+$mylink = New-AzPrivateDnsVirtualNetworkLink -ZoneName cloud-internal.com -ResourceGroupName azuredemo -Name networklink -VirtualNetworkId $vnet.id -EnableRegistration
+
+
+// Using Azure command line interface to work with private DNS Zones
+
+// Create your Private DNS Zone
+
+az network private-dns zone create -g azuredemo -n cloud-internal.com
+
+// Create a virtual network link
+
+az network private-dns link vnet create -g azuredemo -n networklink -z cloud-internal.com -v privatenetwork -e true
+
+
+3. Other important points
+
+    The records in a private DNS Zone are not resolvable from the Internet.
+
+    If you decide to link a virtual network to a private DNS zone and don't choose Auto-registration , then that network is referred to as a resolution only virtual network. The DNS records for the virtual machines in this network will not be automatically updated in the Private DNS Zone.
+
+    Only one link can be created between a private DNS zone and a virtual network
