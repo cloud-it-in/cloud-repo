@@ -269,3 +269,13 @@ Also make sure to delete any Virtual network links for the Private DNS Zone
 
 Next you can go ahead and delete the Private DNS Zone.
 
+
+# How to SSH into Linux VM
+Take the Public IP address and paste in Putty
+>> Putty Connects to the Terminal
+Enter User Name and Password, used while creating the LinuxVM
+Commandlet: 
+$ sudo apt-get update ( for all all updates)
+$ sudo apt-get install -y nginx ( To install Nginx Webserver)
+
+*** You need Add port 80 in Inbound rule in NSG
